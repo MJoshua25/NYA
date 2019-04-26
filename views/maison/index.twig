@@ -1,0 +1,108 @@
+{% extends '../layout.twig' %}
+{% block body %}
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalContact">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="text-center modal-title">Contacter</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body mx-3">
+                    <form method="post">
+                        <div class="md-form mb-5"><i class="fa fa-user prefix grey-text"></i><input class="form-control" type="text" name="contact_nom" required="" id="contact_nom"><label for="i_nom">Nom et prénom</label></div>
+                        <div class="md-form mb-5"><i class="fa fa-mobile-phone prefix grey-text"></i><input class="form-control validate" type="tel" name="contact_phone" required="" maxlength="8" minlength="8" pattern="[0-9]{8}" autocomplete="off" inputmode="tel" id="contact_phone">
+                            <label
+                                    for="contact_phone" data-error="Ceci n'est pas un numéro" data-success="Valide">Votre numéro de téléphone</label>
+                        </div>
+                        <div class="md-form mb-5"><i class="fa fa-envelope prefix grey-text"></i><input class="form-control validate" type="email" name="contact_email" required="" inputmode="email" id="contact_email"><label for="contact_email" data-error="email invalide" data-success="Valide">Votre email</label></div>
+                        <input
+                                class="form-control" type="hidden" name="modele" value="1"></form>
+                </div>
+                <div class="modal-footer d-flex justify-content-center"><button class="btn btn-primary" type="submit">Contacter</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="article-dual-column mt-3" style="margin-bottom:20px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <a class="btn btn-dark" role="button" href="../">
+                        <i class="fa fa-arrow-left mr-3"></i>Retour
+                    </a>
+                    <div class="intro">
+                        <h1 class="text-center">{{ maison.nom }}</h1>
+                        <p class="text-center"> <span class="date">{{ maison.form }}</span></p>
+                        <div class="carousel slide carousel-fade" data-ride="carousel" id="carousel-1">
+                            <div class="carousel-inner" role="listbox">
+                                {% for image in maison.img %}
+                                    <div class="carousel-item {{ (loop.index==1) ? "active":""}}">
+                                        <img class="w-100 d-block" src="../images/{{ image.img }}" alt="Slide Image">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div>
+                                <a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-1" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                    <span class="sr-only">Next</span
+                                    ></a>
+                            </div>
+                            <ol class="carousel-indicators">
+                                {% for i in range(0, maison.img.length-1) %}
+                                    <li data-target="#carousel-1" data-slide-to="{{ i }}" {{ i==0 ? 'class="active"':'' }}"></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-lg-3 offset-md-1">
+                    <div class="toc">
+                        <p>Caractéristiques</p>
+                        <ul>
+                            <li><a>Type : {{ maison.type }}</a> </li>
+                            <li><a>Style : {{ maison.style_c }}</a></li>
+                            <li><a>Longueur : {{ maison.longueur }} m</a> </li>
+                            <li><a>Largeur :&nbsp;{{ maison.largeur }}</a> </li>
+                            <li><a>Superficie :&nbsp;</a>{{ maison.superficie }} m²</li>
+                            <li><a>chambres :&nbsp;</a> {{ maison.chambre }}</li>
+                            <li><a>Salles de bain :&nbsp;</a> {{ maison.douche }}</li>
+                            <li><a>Prix du plan :&nbsp;</a> {{ maison.prix }}</li>
+                            <li><a>Prix estimé de construction :&nbsp;</a> {{ maison.estimation }}</li>
+                        </ul>
+                        {% if not maison.buy %}
+                            <a class="btn btn-primary" role="button" {{ not user ? 'data-toggle="modal" data-target="#modalConnexion"':'href="../maison/' ~ maison.id ~'/buy"' }}>Acheter les plans</a>
+                        {% endif %}
+                        {% if not maison.contacted %}
+                            <button id="btn_contact" class="btn btn-primary" type="button" {{ not user ? 'data-toggle="modal" data-target="#modalConnexion"':'onclick="contact('~ user.id ~',' ~ maison.id ~ ')"' }} >contacter pour la construction</button>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
+                    <div class="text">
+                        <p>{{ maison.description }}</p>
+                    </div>
+                    {% if maison.buy %}
+                        <div class="photo-gallery text-center">
+                        <div class="intro">
+                            <h2 class="text-center">Les plans</h2>
+                        </div>
+                        <div class="row justify-content-center photos">
+                            {% for plan in maison.plan %}
+                                <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                    <a href="../images/{{ plan.img }}" data-lightbox="photos">
+                                        <img class="img-fluid" src="../images/{{ plan.img }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                            <button class="btn btn-light" type="button" onclick="getimglist({{ maison.id }})">Télécharger les plans</button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

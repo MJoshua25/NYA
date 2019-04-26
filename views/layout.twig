@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/css/mdb.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalConnexion">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" action="../connexion">
+                    <div class="modal-header text-center">
+                        <h4 class="text-center modal-title">Connexion</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <input class="form-control validate" type="email" name="c_email" required="" inputmode="email" id="c_email">
+                            <label for="c_email" data-error="email invalide" data-success="Valide">Votre email</label>
+                        </div>
+                        <div class="md-form mb-5">
+                            <i class="fa fa-lock prefix grey-text"></i>
+                            <input class="form-control validate" type="password" name="c_password" required="" minlength="8" autocomplete="off" id="c_password">
+                            <label for="c_password" data-error="Trop faible" data-success="Valide">Votre mot de passe</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center"><button class="btn btn-light" type="submit">Connexion</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalUpdate">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="post" action="../update">
+                        <div class="modal-header text-center">
+                            <h4 class="text-center modal-title">Modifier mot de passe</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5">
+                                <i class="fa fa-lock prefix grey-text"></i>
+                                <input class="form-control validate" type="password" name="u_old_password" required="" minlength="8" autocomplete="off" id="u_old_password">
+                                <label for="u_old_password" data-error="invalide" data-success="Valide">Votre ancien mot de passe</label>
+                            </div>
+                            <div class="md-form mb-5">
+                                <i class="fa fa-lock prefix grey-text"></i>
+                                <input class="form-control validate" type="password" name="u_password" required="" minlength="8" autocomplete="off" id="u_password">
+                                <label for="u_password" data-error="Trop faible" data-success="Valide">Votre nouveau mot de passe</label>
+                            </div>
+                            <div class="md-form mb-5">
+                                <i class="fa fa-lock prefix grey-text"></i>
+                                <input class="form-control validate" type="password" name="u_confirmation" required="" minlength="8" autocomplete="off" id="u_confirmation">
+                                <label for="u_confirmation" data-error="non correspondant" data-success="Valide">Valider votre nouveau mot de passe</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center"><button class="btn btn-light" type="submit">modifier</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalInscription">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" action="../inscription">
+                    <div class="modal-header text-center">
+                        <h4 class="text-center modal-title">Inscription</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5"><i class="fa fa-user prefix grey-text"></i>
+                            <input class="form-control" type="text" name="i_nom" required="" id="i_nom">
+                            <label for="i_nom">Nom et prénom</label>
+                        </div>
+                        <div class="md-form mb-5"><i class="fa fa-mobile-phone prefix grey-text"></i>
+                            <input class="form-control validate" type="tel" name="i_phone" required="" maxlength="8" minlength="8" pattern="[0-9]{8}" autocomplete="off" inputmode="tel" id="i_phone">
+                            <label for="i_phone" data-error="Ceci n'est pas un numéro" data-success="Valide">Votre numéro de téléphone</label>
+                        </div>
+                        <div class="md-form mb-5">
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <input class="form-control validate" type="email" name="i_email" required="" inputmode="email" id="i_email">
+                            <label for="i_email" data-error="email invalide ou déjà utilisée" data-success="Valide">Votre email</label>
+                        </div>
+                        <div class="md-form mb-5">
+                            <i class="fa fa-lock prefix grey-text"></i>
+                            <input class="form-control validate" type="password" name="i_password" required="" minlength="8" autocomplete="off" id="i_password">
+                            <label for="i_password" data-error="Trop faible" data-success="Valide">Votre mot de passe</label>
+                        </div>
+                        <div class="md-form mb-5">
+                            <i class="fa fa-lock prefix grey-text"></i>
+                            <input class="form-control validate" type="password" name="i_confirmation" required="" minlength="8" autocomplete="off" id="i_confirmation">
+                            <label for="i_confirmation" data-error="Non conforme" data-success="Valide">Confirmez votre mot de passe</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-primary" type="submit">S'inscrire</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+        <div class="container">
+            <a class="navbar-brand" href="../">
+                <i class="fa fa-building mr-2"></i>NYA</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                {% if user is defined %}
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="dropdown nav-item">
+                            <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="dropUser" aria-haspopup="true">
+                                <i class="fa fa-user" style="font-size:21px;"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-default" role="menu" aria-labelledby="dropUser">
+                                <a class="dropdown-item" role="presentation" href="../users/">Dashboard</a>
+                                <a class="dropdown-item" role="presentation" data-toggle="modal" data-target="#modalUpdate">Modifier mon mot de passe</a>
+                                <a class="dropdown-item" role="presentation" href="../users/deconnexion">Deconnexion</a>
+                            </div>
+                        </li>
+                    </ul>
+                {% elseif admin is defined %}
+                    <ul class="nav navbar-nav ml-auto">
+                    </ul>
+                    <a class="btn btn-dark" role="button" href="../admin/dashboard">Dashboard</a>
+                {% else  %}
+                    <ul class="nav navbar-nav ml-auto">
+                    </ul>
+                    <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modalConnexion">Connexion</button>
+                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalInscription">Inscription</button>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</div>
+
+    {% block body %}{% endblock %}
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../javascripts/f_socket.js"></script>
+    <script src="../javascripts/scripts.js"></script>
+</body>
+
+</html>

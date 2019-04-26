@@ -1,0 +1,29 @@
+{% extends './layout.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1>Liste des utilisateurs</h1>
+        </div>
+        <div>
+            <table class="table table-striped table-responsive-md btn-table">
+                <thead class="black white-text">
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr style="cursor: pointer">
+                        <td>{{user.nom}}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.phone }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

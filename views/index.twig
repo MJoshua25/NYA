@@ -1,0 +1,27 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <div id="m_zone">
+        <div class="container">
+            <div class="row">
+                {% for maison in maisons %}
+                    <div class="col-md-6">
+                    <div class="card">
+                        <div class="view overlay"><img src="images/{{ maison.img }}" alt="Card image cap" class="card-img-top">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ maison.nom }}</h4>
+                            <h6 class="text-muted card-subtitle mb-2">{{ maison.type }}</h6>
+                            <p class="card-text">{{ maison.style_c }}</p><a class="card-link" href="../maison/{{ maison.id }}">plus d'informations</a></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

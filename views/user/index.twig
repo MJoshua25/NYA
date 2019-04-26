@@ -1,0 +1,34 @@
+{% extends '../layout.twig' %}
+{% block body %}
+    <section class="container text-center mt-3">
+    <div>
+        <h1>Mes achats</h1>
+    </div>
+    <div>
+        <div>
+            <table class="table table-striped table-responsive-md btn-table mt-3">
+                <thead class="black white-text">
+                <tr>
+                    <th>Nom</th>
+                    <th>Type</th>
+                    <th>Superfice</th>
+                    <th>Plan</th>
+                    <th>Modèle</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for maison in achats %}
+                    <tr>
+                        <td>{{ maison.nom }}</td>
+                        <td>{{ maison.type }}</td>
+                        <td>{{ maison.superficie }} m²</td>
+                        <td><button class="btn btn-primary btn-sm m-0" type="button" onclick="getimglist({{ maison.id }})">Imprimer</button></td>
+                        <td><a class="btn btn-primary btn-sm m-0" role="button" href="../maison/{{ maison.id }}">Afficher</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

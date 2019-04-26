@@ -1,0 +1,118 @@
+{% extends './layout.twig' %}
+
+{% block body %}
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalAddModele">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" enctype="multipart/form-data" action="/admin/maison">
+                    <div class="modal-header text-center">
+                        <h4 class="text-center modal-title">Ajouter un modèle</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <div class="modal-body mx-3">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-font prefix grey-text"></i>
+                                    <input class="form-control" type="text" name="m_nom" required="" id="m_nom">
+                                    <label for="m_nom">Nom</label>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-bed prefix grey-text"></i>
+                                    <input class="form-control" type="number" name="m_chambre" id="m_chambre">
+                                    <label for="m_chambre">Nombre de chambres</label>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-bath prefix grey-text"></i>
+                                    <input class="form-control" type="number" name="m_bain" id="m_bain">
+                                    <label for="m_bain">Nombre de salles de bains</label>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-money prefix grey-text"></i>
+                                    <input class="form-control" type="number" name="m_prix" id="m_prix">
+                                    <label for="m_prix">Prix</label>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-money prefix grey-text"></i>
+                                    <input class="form-control" type="number" name="m_estimation" id="m_estimation">
+                                    <label for="m_estimation">Estimation pour construction</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="md-form mb-5">
+                                    <select class="form-control" name="m_type" id="m_type">
+                                        <option value="maison basse" selected="">maison basse</option>
+                                        <option value="duplex">duplex</option>
+                                    </select>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <select class="form-control" name="m_style" id="m_style">
+                                        {% for style in styles %}
+                                            <option value="{{ style.id }}">{{ style.libele }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-text-height prefix grey-text"></i>
+                                    <input class="form-control" type="number" name="m_longueur" id="m_longueur">
+                                    <label for="m_longueur">Longueur</label>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-text-width prefix grey-text"></i>
+                                    <input class="form-control" type="number" name="m_largeur" id="m_largeur">
+                                    <label for="m_largeur">Largeur</label>
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-home prefix grey-text"></i>
+                                    <input type="file" name="m_image" multiple="" id="m_image">
+                                </div>
+                                <div class="md-form mb-5">
+                                    <i class="fa fa-pencil-square-o prefix grey-text"></i>
+                                    <input type="file" name="m_plan" multiple="" id="m_plan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md-form mb-5">
+                            <i class="fa fa-align-left prefix grey-text"></i>
+                            <textarea id="m_description" class="form-control" rows="15" name="m_description"></textarea>
+                            <label for="m_description">Description</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-primary" type="submit">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5"><button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalAddModele">Ajouter un modèle</button>
+        <div class="text-center">
+            <h1>Liste des modèles</h1>
+        </div>
+        <div>
+            <table class="table table-striped table-responsive-md btn-table">
+                <thead class="black white-text">
+                <tr>
+                    <th>Nom</th>
+                    <th>Type</th>
+                    <th>Superfice</th>
+                    <th>Chambres</th>
+                    <th>Bains</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for maison in maisons %}
+                    <tr style="cursor: pointer" onclick="document.location='../maison/{{ maison.id }}'">
+                        <td>{{maison.nom}}</td>
+                        <td>{{ maison.type }}</td>
+                        <td>{{ maison.superficie }} m²</td>
+                        <td>{{ maison.chambre }}</td>
+                        <td>{{ maison.douche }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
